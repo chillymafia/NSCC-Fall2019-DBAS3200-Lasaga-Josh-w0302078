@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[System]
+(
+	[SystemID] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NVARCHAR(255) NOT NULL, 
+    [Company] NVARCHAR(255) NOT NULL
+)
