@@ -56,6 +56,14 @@
   <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Snapshots" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Stored Procedures\Developer" />
+    <Folder Include="Stored Procedures\ESRB" />
+    <Folder Include="Stored Procedures\Genre" />
+    <Folder Include="Stored Procedures\Publisher" />
+    <Folder Include="Stored Procedures\System" />
+    <Folder Include="Stored Procedures\VideoGame" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="VideoGames.sql" />
@@ -65,11 +73,44 @@
     <Build Include="ESRB.sql" />
     <Build Include="Developer.sql" />
     <Build Include="Publisher.sql" />
+    <Build Include="Stored Procedures\Developer\DeleteDeveloper.sql" />
+    <Build Include="Stored Procedures\Developer\GetAllDevelopers.sql" />
+    <Build Include="Stored Procedures\Developer\GetDeveloper.sql" />
+    <Build Include="Stored Procedures\Developer\InsertDeveloper.sql" />
+    <Build Include="Stored Procedures\Developer\UpdateDeveloper.sql" />
+    <Build Include="Stored Procedures\ESRB\DeleteESRB.sql" />
+    <Build Include="Stored Procedures\ESRB\GetAllESRB.sql" />
+    <Build Include="Stored Procedures\ESRB\GetESRB.sql" />
+    <Build Include="Stored Procedures\ESRB\InsertESRB.sql" />
+    <Build Include="Stored Procedures\ESRB\UpdateESRB.sql" />
+    <Build Include="Stored Procedures\Genre\DeleteGenre.sql" />
+    <Build Include="Stored Procedures\Genre\GetAllGenre.sql" />
+    <Build Include="Stored Procedures\Genre\GetGenre.sql" />
+    <Build Include="Stored Procedures\Genre\InsertGenre.sql" />
+    <Build Include="Stored Procedures\Genre\UpdateGenre.sql" />
+    <Build Include="Stored Procedures\Publisher\DeletePublisher.sql" />
+    <Build Include="Stored Procedures\Publisher\GetAllPublisher.sql" />
+    <Build Include="Stored Procedures\Publisher\GetPublisher.sql" />
+    <Build Include="Stored Procedures\Publisher\InsertPublisher.sql" />
+    <Build Include="Stored Procedures\Publisher\UpdatePublisher.sql" />
+    <Build Include="Stored Procedures\System\DeleteSystem.sql" />
+    <Build Include="Stored Procedures\System\GetAllSystem.sql" />
+    <Build Include="Stored Procedures\System\GetSystem.sql" />
+    <Build Include="Stored Procedures\System\InsertSystem.sql" />
+    <Build Include="Stored Procedures\System\UpdateSystem.sql" />
+    <Build Include="Stored Procedures\VideoGame\DeleteVideoGame.sql" />
+    <Build Include="Stored Procedures\VideoGame\GetAllVideoGames.sql" />
+    <Build Include="Stored Procedures\VideoGame\GetVideoGames.sql" />
+    <Build Include="Stored Procedures\VideoGame\InsertVideoGame.sql" />
+    <Build Include="Stored Procedures\VideoGame\UpdateVideoGame.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="VideoGamesDB.refactorlog" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Script.AddSeedData.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Snapshots\VideoGamesDB_20191024_15-42-51.dacpac" />
   </ItemGroup>
 </Project>

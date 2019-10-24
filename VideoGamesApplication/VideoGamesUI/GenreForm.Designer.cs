@@ -28,68 +28,104 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.SaveButton = new System.Windows.Forms.Button();
             this.GenreListBox = new System.Windows.Forms.ListBox();
+            this.IDLabel = new System.Windows.Forms.Label();
+            this.NameLabel = new System.Windows.Forms.Label();
             this.NameTextBox = new System.Windows.Forms.TextBox();
-            this.Namelabel = new System.Windows.Forms.Label();
-            this.GenreIDTextBox = new System.Windows.Forms.TextBox();
-            this.GenreIDLabel = new System.Windows.Forms.Label();
+            this.genreIDTextBox = new System.Windows.Forms.TextBox();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.AddNewButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(385, 222);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 0;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // GenreListBox
             // 
             this.GenreListBox.FormattingEnabled = true;
-            this.GenreListBox.Location = new System.Drawing.Point(12, 12);
+            this.GenreListBox.ItemHeight = 16;
+            this.GenreListBox.Location = new System.Drawing.Point(13, 13);
             this.GenreListBox.Name = "GenreListBox";
-            this.GenreListBox.Size = new System.Drawing.Size(207, 420);
-            this.GenreListBox.TabIndex = 0;
+            this.GenreListBox.Size = new System.Drawing.Size(208, 420);
+            this.GenreListBox.TabIndex = 1;
+            // 
+            // IDLabel
+            // 
+            this.IDLabel.AutoSize = true;
+            this.IDLabel.Location = new System.Drawing.Point(288, 119);
+            this.IDLabel.Name = "IDLabel";
+            this.IDLabel.Size = new System.Drawing.Size(25, 17);
+            this.IDLabel.TabIndex = 2;
+            this.IDLabel.Text = "ID:";
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.AutoSize = true;
+            this.NameLabel.Location = new System.Drawing.Point(291, 157);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(45, 17);
+            this.NameLabel.TabIndex = 3;
+            this.NameLabel.Text = "Name";
             // 
             // NameTextBox
             // 
-            this.NameTextBox.Location = new System.Drawing.Point(414, 154);
+            this.NameTextBox.Location = new System.Drawing.Point(366, 151);
             this.NameTextBox.Name = "NameTextBox";
-            this.NameTextBox.Size = new System.Drawing.Size(100, 20);
-            this.NameTextBox.TabIndex = 1;
+            this.NameTextBox.Size = new System.Drawing.Size(100, 22);
+            this.NameTextBox.TabIndex = 4;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.TextBox1_TextChanged);
             // 
-            // Namelabel
+            // genreIDTextBox
             // 
-            this.Namelabel.AutoSize = true;
-            this.Namelabel.Location = new System.Drawing.Point(360, 157);
-            this.Namelabel.Name = "Namelabel";
-            this.Namelabel.Size = new System.Drawing.Size(35, 13);
-            this.Namelabel.TabIndex = 2;
-            this.Namelabel.Text = "Name";
-            this.Namelabel.Click += new System.EventHandler(this.Namelabel_Click);
+            this.genreIDTextBox.Location = new System.Drawing.Point(366, 114);
+            this.genreIDTextBox.Name = "genreIDTextBox";
+            this.genreIDTextBox.Size = new System.Drawing.Size(100, 22);
+            this.genreIDTextBox.TabIndex = 5;
+            this.genreIDTextBox.TextChanged += new System.EventHandler(this.TextBox2_TextChanged);
             // 
-            // GenreIDTextBox
+            // DeleteButton
             // 
-            this.GenreIDTextBox.Location = new System.Drawing.Point(414, 110);
-            this.GenreIDTextBox.Name = "GenreIDTextBox";
-            this.GenreIDTextBox.ReadOnly = true;
-            this.GenreIDTextBox.Size = new System.Drawing.Size(100, 20);
-            this.GenreIDTextBox.TabIndex = 3;
+            this.DeleteButton.Location = new System.Drawing.Point(496, 222);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.TabIndex = 6;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
-            // GenreIDLabel
+            // AddNewButton
             // 
-            this.GenreIDLabel.AutoSize = true;
-            this.GenreIDLabel.Location = new System.Drawing.Point(360, 113);
-            this.GenreIDLabel.Name = "GenreIDLabel";
-            this.GenreIDLabel.Size = new System.Drawing.Size(21, 13);
-            this.GenreIDLabel.TabIndex = 4;
-            this.GenreIDLabel.Text = "ID:";
+            this.AddNewButton.Location = new System.Drawing.Point(278, 222);
+            this.AddNewButton.Name = "AddNewButton";
+            this.AddNewButton.Size = new System.Drawing.Size(75, 23);
+            this.AddNewButton.TabIndex = 7;
+            this.AddNewButton.Text = "Add New";
+            this.AddNewButton.UseVisualStyleBackColor = true;
+            this.AddNewButton.Click += new System.EventHandler(this.AddNewButton_Click);
             // 
             // GenreForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.GenreIDLabel);
-            this.Controls.Add(this.GenreIDTextBox);
-            this.Controls.Add(this.Namelabel);
+            this.Controls.Add(this.AddNewButton);
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.genreIDTextBox);
             this.Controls.Add(this.NameTextBox);
+            this.Controls.Add(this.NameLabel);
+            this.Controls.Add(this.IDLabel);
             this.Controls.Add(this.GenreListBox);
+            this.Controls.Add(this.SaveButton);
             this.Name = "GenreForm";
             this.Text = "GenreForm";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.GenreForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -98,10 +134,13 @@
 
         #endregion
 
+        private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.ListBox GenreListBox;
+        private System.Windows.Forms.Label IDLabel;
+        private System.Windows.Forms.Label NameLabel;
         private System.Windows.Forms.TextBox NameTextBox;
-        private System.Windows.Forms.Label Namelabel;
-        private System.Windows.Forms.TextBox GenreIDTextBox;
-        private System.Windows.Forms.Label GenreIDLabel;
+        private System.Windows.Forms.TextBox genreIDTextBox;
+        private System.Windows.Forms.Button DeleteButton;
+        private System.Windows.Forms.Button AddNewButton;
     }
 }
