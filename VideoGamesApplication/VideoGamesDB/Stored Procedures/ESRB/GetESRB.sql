@@ -1,0 +1,5 @@
+﻿CREATE PROCEDURE [dbo].[GetESRB]
+	@esrbid int
+AS
+	SELECT * FROM ESRB WHERE ESRBID = @esrbid;
+RETURN 0

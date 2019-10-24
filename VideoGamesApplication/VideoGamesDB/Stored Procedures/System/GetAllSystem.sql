@@ -1,0 +1,4 @@
+﻿CREATE PROCEDURE [dbo].[GetAllSystem]
+AS
+	SELECT * FROM System;
+RETURN 0
