@@ -10,7 +10,7 @@ namespace VideoGamesDAL
 {
     public static class GenreManager
     {
-        public static Genre GetGenre(int GenreID)
+        public static ESRB GetGenre(int GenreID)
         {
             using (SqlConnection conn = DB.GetConnection())
             {
@@ -18,7 +18,10 @@ namespace VideoGamesDAL
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM Genre WHERE ID = " + GenreID + ";";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandText = "GetGenre";
+                    cmd.Parameters.AddWithValue("@GenreID", GenreID);
+
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -67,6 +70,88 @@ namespace VideoGamesDAL
             }
             //return the list
             return genres;
+        }
+        public static Genre AddGenre(Genre genre)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define a command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //NOTE: this is done with SQL in the code...
+                    //You are expected to create a Stored Proc
+                    //to do the insert. Refer to update and delete
+                    //examples
+
+                    cmd.Connection = conn;
+                    cmd.CommandText = "InsertGenre";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@genreName", genre.Name);
+
+
+                    //run the command
+                    int newId = (int)cmd.ExecuteScalar();
+
+                    //set the id with the new row id
+                    genre.GenreID = newId;
+
+                    //return the updated category object
+                    //that now contains the id of the new category
+                    return genre;
+                }
+            }
+        }
+        public static int DeleteGenre(int GenreID)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //create command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "DeleteGenre";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //the stored proc expects one parameter - id
+                    cmd.Parameters.AddWithValue("@GenreID", GenreID);
+
+                    //run command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
+
+
+            //clean up your 
+        }
+
+        /// <summary>
+        /// Update an existing category
+        /// </summary>
+        /// <param name="category">The category (object) to update</param>
+        /// <returns>Number of rows affected</returns>
+        public static int UpdateGenre(Genre genre)
+        {
+            //get the connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define the command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "UpdateGenre";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //fill in all parameters that the stored proc expects
+                    cmd.Parameters.AddWithValue("@genreid", genre.GenreID);
+                    cmd.Parameters.AddWithValue("@name", genre.Name);
+                    //run the command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
         }
     }
 }

@@ -18,7 +18,10 @@ namespace VideoGamesDAL
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM ESRB WHERE ID = " + ESRBID + ";";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandText = "GetESRB";
+                    cmd.Parameters.AddWithValue("@esrbid", ESRBID);
+
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -67,6 +70,86 @@ namespace VideoGamesDAL
             }
             //return the list
             return esrbs;
+
         }
+
+        public static ESRB AddESRB(ESRB esrb)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define a command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //NOTE: this is done with SQL in the code...
+                    //You are expected to create a Stored Proc
+                    //to do the insert. Refer to update and delete
+                    //examples
+
+                    cmd.Connection = conn;
+                    cmd.CommandText = "InsertESRB";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ESRBRating", esrb.Rating);
+
+
+                    //run the command
+                    int newId = (int)cmd.ExecuteScalar();
+
+                    //set the id with the new row id
+                    esrb.ESRBID = newId;
+
+                    //return the updated category object
+                    //that now contains the id of the new category
+                    return esrb;
+                }
+            }
+        }
+
+        public static int DeleteESRB(int esrbid)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //create command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "DeleteESRB";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //the stored proc expects one parameter - id
+                    cmd.Parameters.AddWithValue("@esrbid", esrbid);
+
+                    //run command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
+
+
+            //clean up your 
+        }
+        public static int UpdateESRB(ESRB esrb)
+        {
+            //get the connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define the command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "UpdateESRB";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //fill in all parameters that the stored proc expects
+                    cmd.Parameters.AddWithValue("@esrbid", esrb.ESRBID);
+                    cmd.Parameters.AddWithValue("@rating", esrb.Rating);
+                    //run the command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
+        }
+
     }
 }

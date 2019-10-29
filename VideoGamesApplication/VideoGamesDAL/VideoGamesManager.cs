@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -79,6 +80,97 @@ namespace VideoGamesDAL
             }
             //return the list
             return videogames;
+        }
+
+        public static VideoGame AddVideoGame(VideoGame videogame)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define a command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //NOTE: this is done with SQL in the code...
+                    //You are expected to create a Stored Proc
+                    //to do the insert. Refer to update and delete
+                    //examples
+
+                    cmd.Connection = conn;
+                    cmd.CommandText = "InsertVideoGame";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@videogameTitle", videogame.Title);
+
+
+                    //run the command
+                    int newId = (int)cmd.ExecuteScalar();
+
+                    //set the id with the new row id
+                    videogame.GameID = newId;
+
+                    //return the updated category object
+                    //that now contains the id of the new category
+                    return videogame;
+
+                }
+            }
+        }
+        public static int DeleteVideoGame(int GameID)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //create command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "DeleteVideoGame";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //the stored proc expects one parameter - id
+                    cmd.Parameters.AddWithValue("@GameID", GameID);
+
+                    //run command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
+
+
+            //clean up your 
+        }
+
+        /// <summary>
+        /// Update an existing category
+        /// </summary>
+        /// <param name="category">The category (object) to update</param>
+        /// <returns>Number of rows affected</returns>
+        public static int UpdateVideoGame(VideoGame videogame)
+        {
+            //get the connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define the command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "UpdateVideoGame";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //fill in all parameters that the stored proc expects
+                    cmd.Parameters.AddWithValue("@GameID", videogame.GameID);
+                    cmd.Parameters.AddWithValue("@Title", videogame.Title);
+                    cmd.Parameters.AddWithValue("@ReleaseDate", videogame.ReleaseDate);
+                    cmd.Parameters.AddWithValue("@System", videogame.System);
+                    cmd.Parameters.AddWithValue("@Genre", videogame.Genre);
+                    cmd.Parameters.AddWithValue("@ESRB", videogame.ESRB);
+                    cmd.Parameters.AddWithValue("@Publisher", videogame.Publisher);
+                    cmd.Parameters.AddWithValue("@Developer", videogame.Developer);
+
+                    //run the command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
         }
     }
 }

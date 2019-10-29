@@ -93,8 +93,8 @@ namespace VideoGamesUI
             else
             {
                 MessageBox.Show(
-                    "Unable to Deete Genre, check log file for more details",
-                    );
+                    "Unable to Deete Genre, check log file for more details"
+                    ); 
             }
 
             
@@ -110,7 +110,7 @@ namespace VideoGamesUI
 
             //clear any selection in the istbox
 
-            GenreListBox.SelectedIndex
+           // GenreListBox.SelectedIndex
         }
     }
 }

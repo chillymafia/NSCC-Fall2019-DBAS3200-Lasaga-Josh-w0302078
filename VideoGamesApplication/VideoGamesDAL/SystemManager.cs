@@ -1,4 +1,5 @@
-﻿/*using System;
+﻿/*
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -18,7 +19,10 @@ namespace VideoGamesDAL
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM System WHERE ID = " + SystemID + ";";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandText = "GetESRB";
+                    cmd.Parameters.AddWithValue("@systemid", SystemID);
+
 
                     SqlDataReader reader = cmd.ExecuteReader();
 
@@ -70,6 +74,88 @@ namespace VideoGamesDAL
             //return the list
             return systems;
         }
+        public static System AddSystem(System system)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define a command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    //NOTE: this is done with SQL in the code...
+                    //You are expected to create a Stored Proc
+                    //to do the insert. Refer to update and delete
+                    //examples
+
+                    cmd.Connection = conn;
+                    cmd.CommandText = "InsertSystem";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@systemName", system.Name);
+                    cmd.Parameters.AddWithValue("@systemCompany", system.Company);
+
+
+                    //run the command
+                    int newId = (int)cmd.ExecuteScalar();
+
+                    //set the id with the new row id
+                    system.SystemID = newId;
+
+                    //return the updated category object
+                    //that now contains the id of the new category
+                    return system;
+                }
+            }
+        }
+        public static int DeleteSystem(int SystemID)
+        {
+            //get connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //create command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "DeleteSystem";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //the stored proc expects one parameter - id
+                    cmd.Parameters.AddWithValue("@systemid", SystemID);
+
+                    //run command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
+
+
+            //clean up your 
+        }
+
+        /// <summary>
+        /// Update an existing category
+        /// </summary>
+        /// <param name="category">The category (object) to update</param>
+        /// <returns>Number of rows affected</returns>
+        public static int UpdateSystem(System system)
+        {
+            //get the connection
+            using (SqlConnection conn = DB.GetConnection())
+            {
+                //define the command
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = conn;
+                    cmd.CommandText = "UpdateSystem";
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    //fill in all parameters that the stored proc expects
+                    cmd.Parameters.AddWithValue("@systemid", system.SystemID);
+                    cmd.Parameters.AddWithValue("@name", system.Name);
+                    //run the command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    return rowsAffected;
+                }
+            }
+        }
     }
 }
-*/

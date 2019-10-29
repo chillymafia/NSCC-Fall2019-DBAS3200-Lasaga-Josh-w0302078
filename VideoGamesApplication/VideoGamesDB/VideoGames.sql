@@ -1,7 +1,7 @@
 ﻿CREATE TABLE [dbo].[VideoGames]
 (
 	[id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [Title / Name] NVARCHAR(255) NOT NULL, 
+    [Title] NVARCHAR(255) NOT NULL, 
     [System] INT NOT NULL, 
     [Genre] INT NOT NULL, 
     [ReleaseDate] DATE NOT NULL, 
