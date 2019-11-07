@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[DeleteVideoGame]
-	@id int,
+	@ID int,
 	@title nvarchar(255),
 	@system nvarchar(255),
 	@genre nvarchar(255),

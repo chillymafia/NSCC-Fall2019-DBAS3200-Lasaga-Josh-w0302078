@@ -10,7 +10,7 @@ namespace VideoGamesDAL
 {
     public static class GenreManager
     {
-        public static ESRB GetGenre(int GenreID)
+        public static Genre GetGenre(int GenreID)
         {
             using (SqlConnection conn = DB.GetConnection())
             {
@@ -144,8 +144,8 @@ namespace VideoGamesDAL
                     cmd.CommandText = "UpdateGenre";
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     //fill in all parameters that the stored proc expects
-                    cmd.Parameters.AddWithValue("@genreid", genre.GenreID);
-                    cmd.Parameters.AddWithValue("@name", genre.Name);
+                    cmd.Parameters.AddWithValue("@GenreID", genre.GenreID);
+                    cmd.Parameters.AddWithValue("@Name", genre.Name);
                     //run the command
                     int rowsAffected = cmd.ExecuteNonQuery();
 
