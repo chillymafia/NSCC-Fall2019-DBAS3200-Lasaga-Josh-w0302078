@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateGenre]
-	@genreid int,
-	@Name nvarchar(50)
+	@GenreID int,
+	@GenreName nvarchar(50)
 AS
-	UPDATE Genre SET Name=@Name WHERE GenreID=@genreid;
+	UPDATE Genre SET Name=@GenreName WHERE GenreID=@GenreID;
 RETURN @@rowcount

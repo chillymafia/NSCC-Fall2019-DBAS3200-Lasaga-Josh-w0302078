@@ -67,7 +67,7 @@
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.MainMenuStrip);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.MainMenuStrip;
+            //this.MainMenuStrip = this.MainMenuStrip;
             this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "VideoGamesHomeForm";
             this.Text = "VideoGamesApplication";
@@ -81,7 +81,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip MainMenuStrip;
+        //private System.Windows.Forms.MenuStrip MainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem appToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
     }
