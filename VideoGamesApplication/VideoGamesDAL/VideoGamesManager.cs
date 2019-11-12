@@ -45,7 +45,7 @@ namespace VideoGamesDAL
                 }
             }
         }
-        public static List<VideoGame> GetVideoGameList()
+        public static List<VideoGame> GetVideoGameList(int GenreID)
         {
             //create empty list to hold objects
             List<VideoGame> videogames = new List<VideoGame>();
@@ -57,7 +57,8 @@ namespace VideoGamesDAL
                 using (SqlCommand cmd = new SqlCommand())
                 {
                     cmd.Connection = conn;
-                    cmd.CommandText = "SELECT * FROM VideoGames";
+                    cmd.CommandText = "SELECT * FROM VideoGames WHERE GenreID = @GenreID;";
+                    cmd.Parameters.AddWithValue("@GenreID", GenreID);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())

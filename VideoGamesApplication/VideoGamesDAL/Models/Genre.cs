@@ -11,5 +11,20 @@ namespace VideoGamesDAL.Models
         //SCALAR PROPERTIES
         public int GenreID { get; set; }
         public string Name { get; set; }
+
+        //navigation properties
+        private List<VideoGame> _videogames;
+
+        public List<VideoGame> VideoGames
+        {
+            get
+            {
+                if(_videogames == null)
+                {
+                    _videogames = VideoGamesManager.GetVideoGameList(GenreID);
+                }
+                return _videogames;
+            }
+        }
     }
 }

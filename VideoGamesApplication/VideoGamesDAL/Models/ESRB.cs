@@ -12,4 +12,16 @@ namespace VideoGamesDAL.Models
         public int ESRBID { get; set; }
         public string Rating { get; set; }
     }
+    private List<VideoGame> _videogames;
+    public List<VideoGame> VideoGames
+    {
+        get
+        {
+            if (_videogames == null)
+            {
+                _videogames = VideoGamesManager.GetVideoGameList(ESRBID);
+            }
+            return _videogames;
+        }
+    }
 }

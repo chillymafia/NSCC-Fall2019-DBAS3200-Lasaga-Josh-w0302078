@@ -13,4 +13,16 @@ namespace VideoGamesDAL.Models
         public string Name { get; set; }
         public string Company { get; set; }
     }
+    private List<VideoGame> _videogames;
+    public List<VideoGame> VideoGames
+    {
+        get
+        {
+            if (_videogames == null)
+            {
+                _videogames = VideoGamesManager.GetVideoGameList(SystemID);
+            }
+            return _videogames;
+        }
+    }
 }
