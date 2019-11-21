@@ -14,6 +14,15 @@ namespace VideoGamesUI
 {
     public partial class GenreForm : Form
     {
+        private TextBox GenreIDTextBox;
+        private TextBox NameTextBox;
+        private Button SaveButton;
+        private Button DeleteButton;
+        private Label IDLabel;
+        private Label NameLabel;
+        private Button AddNewButton;
+        private ListBox GenreListBox;
+
         public GenreForm()
         {
             InitializeComponent();
@@ -152,5 +161,105 @@ namespace VideoGamesUI
                 }
             }
         }
+
+        private void InitializeComponent()
+        {
+            this.GenreListBox = new System.Windows.Forms.ListBox();
+            this.GenreIDTextBox = new System.Windows.Forms.TextBox();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.DeleteButton = new System.Windows.Forms.Button();
+            this.IDLabel = new System.Windows.Forms.Label();
+            this.NameLabel = new System.Windows.Forms.Label();
+            this.AddNewButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // GenreListBox
+            // 
+            this.GenreListBox.FormattingEnabled = true;
+            this.GenreListBox.Location = new System.Drawing.Point(13, 13);
+            this.GenreListBox.Name = "GenreListBox";
+            this.GenreListBox.Size = new System.Drawing.Size(194, 355);
+            this.GenreListBox.TabIndex = 0;
+            // 
+            // GenreIDTextBox
+            // 
+            this.GenreIDTextBox.Location = new System.Drawing.Point(390, 107);
+            this.GenreIDTextBox.Name = "GenreIDTextBox";
+            this.GenreIDTextBox.Size = new System.Drawing.Size(100, 20);
+            this.GenreIDTextBox.TabIndex = 1;
+            // 
+            // NameTextBox
+            // 
+            this.NameTextBox.Location = new System.Drawing.Point(390, 149);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.NameTextBox.TabIndex = 2;
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(349, 192);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 3;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // DeleteButton
+            // 
+            this.DeleteButton.Location = new System.Drawing.Point(430, 192);
+            this.DeleteButton.Name = "DeleteButton";
+            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.TabIndex = 4;
+            this.DeleteButton.Text = "Delete";
+            this.DeleteButton.UseVisualStyleBackColor = true;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
+            // 
+            // IDLabel
+            // 
+            this.IDLabel.AutoSize = true;
+            this.IDLabel.Location = new System.Drawing.Point(351, 107);
+            this.IDLabel.Name = "IDLabel";
+            this.IDLabel.Size = new System.Drawing.Size(21, 13);
+            this.IDLabel.TabIndex = 5;
+            this.IDLabel.Text = "ID:";
+            // 
+            // NameLabel
+            // 
+            this.NameLabel.AutoSize = true;
+            this.NameLabel.Location = new System.Drawing.Point(346, 152);
+            this.NameLabel.Name = "NameLabel";
+            this.NameLabel.Size = new System.Drawing.Size(38, 13);
+            this.NameLabel.TabIndex = 6;
+            this.NameLabel.Text = "Name:";
+            // 
+            // AddNewButton
+            // 
+            this.AddNewButton.Location = new System.Drawing.Point(512, 191);
+            this.AddNewButton.Name = "AddNewButton";
+            this.AddNewButton.Size = new System.Drawing.Size(75, 23);
+            this.AddNewButton.TabIndex = 7;
+            this.AddNewButton.Text = "Add New";
+            this.AddNewButton.UseVisualStyleBackColor = true;
+            // 
+            // GenreForm
+            // 
+            this.ClientSize = new System.Drawing.Size(783, 388);
+            this.Controls.Add(this.AddNewButton);
+            this.Controls.Add(this.NameLabel);
+            this.Controls.Add(this.IDLabel);
+            this.Controls.Add(this.DeleteButton);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.NameTextBox);
+            this.Controls.Add(this.GenreIDTextBox);
+            this.Controls.Add(this.GenreListBox);
+            this.Name = "GenreForm";
+            this.Load += new System.EventHandler(this.GenreForm_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
     }
 }

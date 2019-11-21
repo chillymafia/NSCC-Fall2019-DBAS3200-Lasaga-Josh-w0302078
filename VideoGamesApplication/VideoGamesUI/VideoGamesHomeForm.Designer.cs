@@ -28,52 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
-            this.appToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MainMenuStrip.SuspendLayout();
+            this.MainMenuStrip = new System.Windows.Forms.MenuStrip();
             this.SuspendLayout();
-            // 
-            // MainMenuStrip
-            // 
-            this.MainMenuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.MainMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.appToolStripMenuItem});
-            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
-            this.MainMenuStrip.Name = "MainMenuStrip";
-            this.MainMenuStrip.Size = new System.Drawing.Size(1067, 28);
-            this.MainMenuStrip.TabIndex = 1;
-            this.MainMenuStrip.Text = "menuStrip1";
-            // 
-            // appToolStripMenuItem
-            // 
-            this.appToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.exitToolStripMenuItem});
-            this.appToolStripMenuItem.Name = "appToolStripMenuItem";
-            this.appToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
-            this.appToolStripMenuItem.Text = "File";
-            this.appToolStripMenuItem.Click += new System.EventHandler(this.AppToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(92, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            // 
+            // MainMenuStrip
+            // 
+            this.MainMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MainMenuStrip.Name = "MainMenuStrip";
+            this.MainMenuStrip.Size = new System.Drawing.Size(800, 24);
+            this.MainMenuStrip.TabIndex = 3;
+            this.MainMenuStrip.Text = "menuStrip1";
             // 
             // VideoGamesHomeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.MainMenuStrip);
             this.IsMdiContainer = true;
-            //this.MainMenuStrip = this.MainMenuStrip;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "VideoGamesHomeForm";
             this.Text = "VideoGamesApplication";
             this.Load += new System.EventHandler(this.VideoGamesHomeForm_Load);
-            this.MainMenuStrip.ResumeLayout(false);
-            this.MainMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,5 +66,6 @@
         //private System.Windows.Forms.MenuStrip MainMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem appToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip MainMenuStrip;
     }
 }
