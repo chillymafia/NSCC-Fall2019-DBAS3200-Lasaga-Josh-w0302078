@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VideoGamesUI.Models
+namespace VideoGamesAPI.Models
 {
-    public partial class Esrb
+    public partial class Publisher
     {
-        public Esrb()
+        public Publisher()
         {
             VideoGames = new HashSet<VideoGames>();
         }
 
-        public int Esrbid { get; set; }
-        public string Rating { get; set; }
+        public int PubId { get; set; }
+        public string Name { get; set; }
 
         public ICollection<VideoGames> VideoGames { get; set; }
     }

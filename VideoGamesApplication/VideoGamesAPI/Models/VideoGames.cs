@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VideoGamesUI.Models
+namespace VideoGamesAPI.Models
 {
     public partial class VideoGames
     {

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace VideoGamesUI.Models
+namespace VideoGamesAPI.Models
 {
-    public partial class Publisher
+    public partial class Developer
     {
-        public Publisher()
+        public Developer()
         {
             VideoGames = new HashSet<VideoGames>();
         }
 
-        public int PubId { get; set; }
+        public int DevId { get; set; }
         public string Name { get; set; }
 
         public ICollection<VideoGames> VideoGames { get; set; }

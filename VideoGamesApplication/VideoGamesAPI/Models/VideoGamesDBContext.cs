@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace VideoGamesUI.Models
+namespace VideoGamesAPI.Models
 {
     public partial class VideoGamesDBContext : DbContext
     {
