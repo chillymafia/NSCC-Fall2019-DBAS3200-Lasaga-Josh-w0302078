@@ -11,17 +11,20 @@ namespace VideoGamesDAL.Models
         //SCALAR PROPERTIES
         public int ESRBID { get; set; }
         public string Rating { get; set; }
-    }
-    private List<VideoGame> _videogames;
-    public List<VideoGame> VideoGames
-    {
-        get
+
+
+        private List<VideoGame> _videogames;
+        public List<VideoGame> VideoGames
         {
-            if (_videogames == null)
+            get
             {
-                _videogames = VideoGamesManager.GetVideoGameList(ESRBID);
+                if (_videogames == null)
+                {
+                    _videogames = VideoGamesManager.GetVideoGameList(ESRBID);
+                }
+                return _videogames;
             }
-            return _videogames;
         }
     }
+
 }

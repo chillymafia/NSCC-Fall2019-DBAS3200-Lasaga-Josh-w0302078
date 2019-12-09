@@ -23,31 +23,31 @@ namespace VideoGamesDAL.Models
         public string Developer { get; set; }
 
         //navigation properties
-        private Genre _genre;
-        public Genre Genre
-        {
-            get
-            {
-                if(_genre == null)
-                {
-                    _genre = GenreManager.GetGenre(GenreID);
-                }
-            }
-            return _genre;
-        }
+        //private Genre _genre;
+        //public Genre Genre
+        //{
+        //    get
+        //    {
+        //        if(_genre == null)
+        //        {
+        //            _genre = GenreManager.GetGenre(GenreID);
+        //        }
+        //    }
+        //    return _genre;
+        //}
 
-        private ESRB _esrb;
-        public ESRB ESRB
-        {
-            get
-            {
-                if (_ESRB == null)
-                {
-                    _esrb = GenreManager.GetGenre(ESRBID);
-                }
-            }
-            return _esrb;
-        }
+        //private ESRB _esrb;
+        //public ESRB ESRB
+        //{
+        //    get
+        //    {
+        //        if (_ESRB == null)
+        //        {
+        //            _esrb = GenreManager.GetGenre(ESRBID);
+        //        }
+        //    }
+        //    return _esrb;
+        //}
 
     }
 }

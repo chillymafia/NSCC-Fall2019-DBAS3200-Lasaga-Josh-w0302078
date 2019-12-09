@@ -140,4 +140,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="Title" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="2838b858-05b4-42d3-92fc-05f94bb82434" ChangeDateTime="12/05/2019 14:15:09">
+    <Property Name="ElementName" Value="[dbo].[VideoGames].[System]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VideoGames]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="SystemID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="62514b3f-98f2-4b09-8eb3-056783cda0cc" ChangeDateTime="12/05/2019 14:15:15">
+    <Property Name="ElementName" Value="[dbo].[VideoGames].[Genre]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VideoGames]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="GenreID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ca1de13b-6348-4e71-9188-acc9a841b1c1" ChangeDateTime="12/05/2019 14:15:22">
+    <Property Name="ElementName" Value="[dbo].[VideoGames].[ESRB]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VideoGames]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ESRBId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d6b80070-4c6e-45e0-b3dc-7e104e0824ab" ChangeDateTime="12/05/2019 14:15:25">
+    <Property Name="ElementName" Value="[dbo].[VideoGames].[Publisher]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[VideoGames]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="PublisherID" />
+  </Operation>
 </Operations>

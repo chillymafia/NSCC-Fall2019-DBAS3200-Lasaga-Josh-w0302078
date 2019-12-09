@@ -81,8 +81,14 @@ namespace VideoGamesUI
                 int GenreID = int.Parse(GenreIDTextBox.Text);
                 string GenreName = NameTextBox.Text;
 
+                Genre newGenre = new Genre()
+                {
+                    GenreID = GenreID,
+                    Name = GenreName
+                };
+
                 //execute DAL update and check result
-                if (GenreManager.UpdateGenre(GenreID, GenreName) == 1)
+                if (GenreManager.UpdateGenre(newGenre) == 1)
                 {
                     //update successful
                     MessageBox.Show("Genre Updated");

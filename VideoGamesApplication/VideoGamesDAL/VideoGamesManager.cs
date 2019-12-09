@@ -30,11 +30,10 @@ namespace VideoGamesDAL
                         v.GameID = reader.GetInt32(0);
                         v.Title = reader.GetString(1);
                         v.System = reader.GetString(2);
-                        v.Genre = reader.GetString(3);
-                        v.ReleaseDate = reader.GetString(4);
-                        v.ESRB = reader.GetString(5);
-                        v.Publisher = reader.GetString(6);
-                        v.Developer = reader.GetString(7);
+                        v.ReleaseDate = reader.GetString(3);
+                        v.ESRB = reader.GetString(4);
+                        v.Publisher = reader.GetString(5);
+                        v.Developer = reader.GetString(6);
                         return v;
                     }
                     else
@@ -45,7 +44,7 @@ namespace VideoGamesDAL
                 }
             }
         }
-        public static List<VideoGame> GetVideoGameList(int GenreID)
+        public static List<VideoGame> GetVideoGameList(int GameID)
         {
             //create empty list to hold objects
             List<VideoGame> videogames = new List<VideoGame>();
@@ -58,7 +57,7 @@ namespace VideoGamesDAL
                 {
                     cmd.Connection = conn;
                     cmd.CommandText = "SELECT * FROM VideoGames WHERE GenreID = @GenreID;";
-                    cmd.Parameters.AddWithValue("@GenreID", GenreID);
+                    cmd.Parameters.AddWithValue("@GenreID", GameID);
 
                     SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
@@ -69,11 +68,10 @@ namespace VideoGamesDAL
                         videogame.GameID = reader.GetInt32(0);
                         videogame.Title = reader.GetString(1);
                         videogame.System = reader.GetString(2);
-                        videogame.Genre = reader.GetString(3);
-                        videogame.ReleaseDate = reader.GetString(4);
-                        videogame.ESRB = reader.GetString(5);
-                        videogame.Publisher = reader.GetString(6);
-                        videogame.Developer = reader.GetString(7);
+                        videogame.ReleaseDate = reader.GetString(3);
+                        videogame.ESRB = reader.GetString(4);
+                        videogame.Publisher = reader.GetString(5);
+                        videogame.Developer = reader.GetString(6);
                         //add the filled category to my list
                         videogames.Add(videogame);
                     }
@@ -161,7 +159,6 @@ namespace VideoGamesDAL
                     cmd.Parameters.AddWithValue("@Title", videogame.Title);
                     cmd.Parameters.AddWithValue("@ReleaseDate", videogame.ReleaseDate);
                     cmd.Parameters.AddWithValue("@System", videogame.System);
-                    cmd.Parameters.AddWithValue("@Genre", videogame.Genre);
                     cmd.Parameters.AddWithValue("@ESRB", videogame.ESRB);
                     cmd.Parameters.AddWithValue("@Publisher", videogame.Publisher);
                     cmd.Parameters.AddWithValue("@Developer", videogame.Developer);

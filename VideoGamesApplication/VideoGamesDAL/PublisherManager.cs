@@ -10,7 +10,7 @@ namespace VideoGamesDAL
 {
     public static class PublisherManager
     {
-        public static ESRB GetPublisher(int PubID)
+        public static Publisher GetPublisher(int PubID)
         {
             using (SqlConnection conn = DB.GetConnection())
             {

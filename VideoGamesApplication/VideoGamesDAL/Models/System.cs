@@ -12,17 +12,20 @@ namespace VideoGamesDAL.Models
         public int SystemID { get; set; }
         public string Name { get; set; }
         public string Company { get; set; }
-    }
-    private List<VideoGame> _videogames;
-    public List<VideoGame> VideoGames
-    {
-        get
+
+
+        private List<VideoGame> _videogames;
+        public List<VideoGame> VideoGames
         {
-            if (_videogames == null)
+            get
             {
-                _videogames = VideoGamesManager.GetVideoGameList(SystemID);
+                if (_videogames == null)
+                {
+                    _videogames = VideoGamesManager.GetVideoGameList(SystemID);
+                }
+                return _videogames;
             }
-            return _videogames;
         }
     }
+
 }

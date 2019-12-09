@@ -68,7 +68,7 @@
   <ItemGroup>
     <Build Include="VideoGames.sql" />
     <Build Include="System.sql" />
-    <Build Include="Game-Genre.sql" />
+    <Build Include="GameGenre.sql" />
     <Build Include="Genre.sql" />
     <Build Include="ESRB.sql" />
     <Build Include="Developer.sql" />

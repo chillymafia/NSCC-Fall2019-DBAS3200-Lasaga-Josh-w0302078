@@ -1,4 +1,4 @@
-﻿/*
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -12,7 +12,7 @@ namespace VideoGamesDAL
 {
     public static class SystemManager
     {
-        public static System GetSystem(int SystemID)
+        public static VideoGamesDAL.Models.System GetSystem(int SystemID)
         {
             using (SqlConnection conn = DB.GetConnection())
             {
@@ -30,7 +30,7 @@ namespace VideoGamesDAL
                     if (reader.HasRows)
                     {
                         // create an object
-                        System s = new System();
+                        VideoGamesDAL.Models.System s = new VideoGamesDAL.Models.System();
                         s.SystemID = reader.GetInt32(0);
                         s.Name = reader.GetString(1);
                         s.Company = reader.GetString(2);
@@ -44,10 +44,10 @@ namespace VideoGamesDAL
                 }
             }
         }
-        public static List<System> GetSystemList()
+        public static List<VideoGamesDAL.Models.System> GetSystemList()
         {
             //create empty list to hold objects
-            List<System> system = new List<System>();
+            List<VideoGamesDAL.Models.System> systems = new List<VideoGamesDAL.Models.System>();
 
             //get a connection from DB class
             using (SqlConnection conn = DB.GetConnection())
@@ -63,7 +63,7 @@ namespace VideoGamesDAL
                     {
                         //generate a new object
                         // and fill it with data from reader
-                        System system = new System();
+                        VideoGamesDAL.Models.System system = new VideoGamesDAL.Models.System();
                         system.SystemID = reader.GetInt32(0);
                         system.Name = reader.GetString(1);
                         system.Company = reader.GetString(2);
@@ -75,7 +75,7 @@ namespace VideoGamesDAL
             //return the list
             return systems;
         }
-        public static System AddSystem(System system)
+        public static VideoGamesDAL.Models.System AddSystem(VideoGamesDAL.Models.System system)
         {
             //get connection
             using (SqlConnection conn = DB.GetConnection())
@@ -137,7 +137,7 @@ namespace VideoGamesDAL
         /// </summary>
         /// <param name="category">The category (object) to update</param>
         /// <returns>Number of rows affected</returns>
-        public static int UpdateSystem(System system)
+        public static int UpdateSystem(VideoGamesDAL.Models.System system)
         {
             //get the connection
             using (SqlConnection conn = DB.GetConnection())

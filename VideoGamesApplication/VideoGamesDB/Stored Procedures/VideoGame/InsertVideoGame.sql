@@ -2,7 +2,6 @@
 	@ID int,
 	@title nvarchar(255),
 	@system nvarchar(255),
-	@genre nvarchar(255),
 	@releasedate nvarchar(255),
 	@esrb nvarchar(255),
 	@publisher nvarchar(255),
@@ -11,7 +10,6 @@
 AS
 	INSERT INTO VideoGames (ID) VALUES (@title);
 	INSERT INTO VideoGames (ID) VALUES (@system);
-	INSERT INTO VideoGames (ID) VALUES (@genre);
 	INSERT INTO VideoGames (ID) VALUES (@releasedate);
 	INSERT INTO VideoGames (ID) VALUES (@esrb);
 	INSERT INTO VideoGames (ID) VALUES (@publisher);

@@ -11,17 +11,19 @@ namespace VideoGamesDAL.Models
         //SCALAR PROPERTIES
         public int PubID { get; set; }
         public string Name { get; set; }
-    }
-    private List<VideoGame> _videogames;
-    public List<VideoGame> VideoGames
-    {
-        get
+
+        private List<VideoGame> _videogames;
+        public List<VideoGame> VideoGames
         {
-            if (_videogames == null)
+            get
             {
-                _videogames = VideoGamesManager.GetVideoGameList(PubID);
+                if (_videogames == null)
+                {
+                    _videogames = VideoGamesManager.GetVideoGameList(PubID);
+                }
+                return _videogames;
             }
-            return _videogames;
         }
     }
+
 }
