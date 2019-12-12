@@ -1,11 +1,18 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
 
 namespace VideoGamesAPI.Models
 {
     public partial class VideoGamesDBContext : DbContext
     {
+        // static LoggerFactory object
+        public static readonly ILoggerFactory loggerFactory = new LoggerFactory(new[] {
+            new ConsoleLoggerProvider((_, __) => true, true)
+            });
+
         public VideoGamesDBContext()
         {
         }
@@ -27,8 +34,9 @@ namespace VideoGamesAPI.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;DataBase=VideoGamesDB;Trusted_Connection=True;");
+                optionsBuilder
+                    .UseLoggerFactory(loggerFactory)
+                    .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;DataBase=VideoGamesDB;Trusted_Connection=True;");
             }
         }
 

@@ -9,7 +9,14 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-
+IF NOT EXISTS (SELECT 1 FROM VideoGames)
+BEGIN
+	INSERT INTO VideoGames (Title, System.Name, ReleaseDate, ESRB.Rating, Publisher.Name, Developer.Name) VALUES('Devil May Cry','PS2','08/23/2001','M','Capcom','Capcom');
+	INSERT INTO VideoGames (Title, System.Name, ReleaseDate, ESRB.Rating, Publisher.Name, Developer.Name) VALUES('GTA: San Andreas','PS2','10/26/2004','M','Rockstar','Rockstar');
+	INSERT INTO VideoGames (Title, System.Name, ReleaseDate, ESRB.Rating, Publisher.Name, Developer.Name) VALUES('Persona 5','PS4','09/15/2016','M','Atlus','Atlus');
+	INSERT INTO VideoGames (Title, System.Name, ReleaseDate, ESRB.Rating, Publisher.Name, Developer.Name) VALUES('Pokemon Moon','3DS','11/18/2016','E','Gamefreak','Nintendo');
+	INSERT INTO VideoGames (Title, System.Name, ReleaseDate, ESRB.Rating, Publisher.Name, Developer.Name) VALUES('Mario KArt 8 Deluxe','Switch','04/27/2017','E','Nintendo','Nintendo');
+END
 --populate ESRB ratings--
 IF NOT EXISTS (SELECT 1 From ESRB)
 BEGIN
@@ -65,4 +72,29 @@ INSERT INTO System(Name, Company) VALUES ('Xbox One','Microsoft');
 INSERT INTO System(Name, Company) VALUES ('Xbox','Microsoft');
 INSERT INTO System(Name, Company) VALUES ('Xbox 360','Microsoft');
 INSERT INTO System(Name, Company) VALUES ('PC','Unknown');
+END
+
+--Populate Developers--
+IF NOT EXISTS (SELECT 1 From Developer)
+BEGIN
+INSERT INTO Developer([Name]) VALUES ('NaughtyDog');
+INSERT INTO Developer([Name]) VALUES ('Atlus');
+INSERT INTO Developer([Name]) VALUES ('Capcom');
+INSERT INTO Developer([Name]) VALUES ('Valve');
+INSERT INTO Developer([Name]) VALUES ('Rockstar');
+INSERT INTO Developer([Name]) VALUES ('Electronic Arts');
+INSERT INTO Developer([Name]) Values ('Gamefreak');
+END
+
+--Populate Publishers--
+IF NOT EXISTS (SELECT 1 From Publisher)
+BEGIN
+INSERT INTO Publisher([Name]) VAlUES ('Sony');
+INSERT INTO Publisher([Name]) VAlUES ('Activision');
+INSERT INTO Publisher([Name]) VAlUES ('Bandai Namco');
+INSERT INTO Publisher([Name]) VAlUES ('Square Enix');
+INSERT INTO Developer([Name]) VALUES ('Electronic Arts');
+INSERT INTO Developer([Name]) VALUES ('Valve');
+INSERT INTO Developer([Name]) VALUES ('Rockstar');
+Insert into Developer([Name]) Values ('Nintendo');
 END
