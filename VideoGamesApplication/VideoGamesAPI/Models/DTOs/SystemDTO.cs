@@ -2,8 +2,8 @@
 {
     public class SystemDTO
     {
-        public int SystemID { get; set; }
-        public int Name { get; set; }
-        public int Company { get; set; }
+        public SystemDTO SystemID { get; set; }
+        public string Name { get; set; }
+        public string Company { get; set; }
     }
 }

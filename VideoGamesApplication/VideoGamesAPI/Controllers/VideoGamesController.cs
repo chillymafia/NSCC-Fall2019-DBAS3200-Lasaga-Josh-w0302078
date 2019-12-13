@@ -26,7 +26,9 @@ namespace VideoGamesAPI.Controllers
         public IEnumerable<VideoGamesDTO> GetVideoGames()
         {
             //return _context.VideoGames.Include(vg => vg.System);
-            List<VideoGames> videoGames = _context.VideoGames.Include(vg => vg.System).ToList();
+            List<VideoGames> videoGames = _context
+                .VideoGames
+                .Include(vg => vg.GameGenre).ToList();
 
             List<VideoGamesDTO> videoGamesDTOList = new List<VideoGamesDTO>();
 
@@ -35,18 +37,18 @@ namespace VideoGamesAPI.Controllers
             foreach(VideoGames vg in videoGames)
             {
                 //make a list of system dtos from the current videogame
-                List<SystemDTO> systemsDTOList = new List<SystemDTO>();
-                foreach(System sys in vg.System)
+                List<GameGenreDTO> GameGenreDTOList = new List<GameGenreDTO>();
+                foreach(GameGenre gg in vg.GameGenre)
                 {
                     //make a system dto
-                    SystemDTO sysdto = new SystemDTO()
+                    GameGenreDTO ggdto = new GameGenreDTO()
                     {
-                        SystemID = sys.SystemID,
-                        Name = sys.Name,
-                        Company = sys.Company
+                        GameGenreID = gg.GameGenreId,
+                        GenreID = gg.GenreId
+                        
                     };
 
-                    systemsDTOList.Add(sysdto);
+                    GameGenreDTOList.Add(ggdto);
                 }
 
 
@@ -55,7 +57,12 @@ namespace VideoGamesAPI.Controllers
                 {
                     VideoGamesID = vg.Id,
                     Title = vg.Title,
-                    System = systemsDTOList
+                    System = new SystemDTO(),
+                    ReleaseDate = vg.ReleaseDate,
+                    ESRB = new ESRBDTO(),
+                    Publisher = new PublisherDTO(),
+                    GameGenre = new GameGenreDTO()
+
                 };
 
                 //add the dto to the dto list
@@ -76,7 +83,7 @@ namespace VideoGamesAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var videoGames = await _context.VideoGames.Include(vg => vg.System).FirstAsync(vg => vg.Id == id);
+            var videoGames = await _context.VideoGames.Include(vg => vg.SystemNavigation).FirstAsync(vg => vg.Id == id);
 
             if (videoGames == null)
             {
@@ -88,25 +95,22 @@ namespace VideoGamesAPI.Controllers
             {
                 VideoGamesID = videoGames.Id,
                 Title = videoGames.Title,
-                System = new List<SystemDTO>()
+               // System = s
             };
 
-            foreach(System sys in videoGames.System)
+            //foreach(VideoGamesAPI.Models.System sys in videoGames.SystemNavigation)
             {
                 SystemDTO sysdto = new SystemDTO()
                 {
-                    SystemID = sys.Id,
-                    Name = sys.Name,
-                    Company = sys.Company
+                  //  SystemID = sys.SystemID,
+                  //  Name = sys.Name,
+                  //  Company = sys.Company
                 };
 
                 //add the system to the videogames system
-                dto.System.Add(sysdto);
+               // dto.System.Add(sysdto);
 
             }
-
-
-
 
             return Ok(dto);
         }

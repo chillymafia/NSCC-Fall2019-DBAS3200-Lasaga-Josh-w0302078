@@ -10,7 +10,17 @@ namespace VideoGamesAPI.Models.DTOs
         public int VideoGamesID { get; set; }
         public string Title { get; set; }
 
-        public List<SystemDTO> System { get; set; }
+        public SystemDTO System { get; set; }
+
+        public DateTime ReleaseDate { get; set; }
+
+        public ESRBDTO ESRB { get; set; }
+
+        public PublisherDTO Publisher { get; set; }
+
+        public DeveleoperDTO Developer { get; set; }
+
+        public GameGenreDTO GameGenre { get; set; }
     }
 }
 
