@@ -8,8 +8,7 @@ namespace VideoGamesAPI.Models.DTOs
     public class PublisherDTO
     {
         public int PubID { get; set; }
-
         public string Name { get; set; }
-
+        public List<VideoGamesDTO> VideoGames { get; set; }
     }
 }

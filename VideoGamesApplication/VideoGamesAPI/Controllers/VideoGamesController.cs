@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VideoGamesAPI.Models;
-using VideoGamesAPI.Models.DTOs;
 
 namespace VideoGamesAPI.Controllers
 {
@@ -23,55 +22,9 @@ namespace VideoGamesAPI.Controllers
 
         // GET: api/VideoGames
         [HttpGet]
-        public IEnumerable<VideoGamesDTO> GetVideoGames()
+        public IEnumerable<VideoGames> GetVideoGames()
         {
-            //return _context.VideoGames.Include(vg => vg.System);
-            List<VideoGames> videoGames = _context
-                .VideoGames
-                .Include(vg => vg.GameGenre).ToList();
-
-            List<VideoGamesDTO> videoGamesDTOList = new List<VideoGamesDTO>();
-
-            //loop through the videogames list and make a new dto for each one
-            //and add to the dto list
-            foreach(VideoGames vg in videoGames)
-            {
-                //make a list of system dtos from the current videogame
-                List<GameGenreDTO> GameGenreDTOList = new List<GameGenreDTO>();
-                foreach(GameGenre gg in vg.GameGenre)
-                {
-                    //make a system dto
-                    GameGenreDTO ggdto = new GameGenreDTO()
-                    {
-                        GameGenreID = gg.GameGenreId,
-                        GenreID = gg.GenreId
-                        
-                    };
-
-                    GameGenreDTOList.Add(ggdto);
-                }
-
-
-                //make an new dto
-                VideoGamesDTO dto = new VideoGamesDTO()
-                {
-                    VideoGamesID = vg.Id,
-                    Title = vg.Title,
-                    System = new SystemDTO(),
-                    ReleaseDate = vg.ReleaseDate,
-                    ESRB = new ESRBDTO(),
-                    Publisher = new PublisherDTO(),
-                    GameGenre = new GameGenreDTO()
-
-                };
-
-                //add the dto to the dto list
-                videoGamesDTOList.Add(dto);
-            }
-
-            //return the dto list
-            return videoGamesDTOList;
-
+            return _context.VideoGames;
         }
 
         // GET: api/VideoGames/5
@@ -83,36 +36,14 @@ namespace VideoGamesAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var videoGames = await _context.VideoGames.Include(vg => vg.SystemNavigation).FirstAsync(vg => vg.Id == id);
+            var videoGames = await _context.VideoGames.FindAsync(id);
 
             if (videoGames == null)
             {
                 return NotFound();
             }
 
-            //make a video game dto
-            VideoGamesDTO dto = new VideoGamesDTO()
-            {
-                VideoGamesID = videoGames.Id,
-                Title = videoGames.Title,
-               // System = s
-            };
-
-            //foreach(VideoGamesAPI.Models.System sys in videoGames.SystemNavigation)
-            {
-                SystemDTO sysdto = new SystemDTO()
-                {
-                  //  SystemID = sys.SystemID,
-                  //  Name = sys.Name,
-                  //  Company = sys.Company
-                };
-
-                //add the system to the videogames system
-               // dto.System.Add(sysdto);
-
-            }
-
-            return Ok(dto);
+            return Ok(videoGames);
         }
 
         // PUT: api/VideoGames/5

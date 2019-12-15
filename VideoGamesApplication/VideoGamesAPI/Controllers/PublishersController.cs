@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VideoGamesAPI.Models;
+using VideoGamesAPI.Models.DTOs;
 
 namespace VideoGamesAPI.Controllers
 {
@@ -22,9 +23,41 @@ namespace VideoGamesAPI.Controllers
 
         // GET: api/Publishers
         [HttpGet]
-        public IEnumerable<Publisher> GetPublisher()
+        public IEnumerable<PublisherDTO> GetPublisher()
         {
-            return _context.Publisher;
+            List<Publisher> publishers = _context.Publisher.Include(pb => pb.VideoGames).ToList();
+
+            List<PublisherDTO> publisherDTOList = new List<PublisherDTO>();
+
+            foreach(Publisher pb in publishers)
+            {
+                List<VideoGamesDTO> videogamesDTOList = new List<VideoGamesDTO>();
+                foreach(VideoGames vg in pb.VideoGames)
+                {
+                    VideoGamesDTO vgDTO = new VideoGamesDTO()
+                    {
+                        VideoGamesID = vg.Id,
+                        Title = vg.Title,
+                        System = vg.System,
+                        ReleaseDate = vg.ReleaseDate,
+                        ESRB = vg.Esrb,
+                        Publisher = vg.Publisher,
+                        Developer = vg.Developer
+                    };
+
+                    videogamesDTOList.Add(vgDTO);
+                }
+
+                PublisherDTO dto = new PublisherDTO()
+                {
+                    PubID = pb.PubId,
+                    Name = pb.Name
+                };
+
+                publisherDTOList.Add(dto);
+            }
+
+            return publisherDTOList;
         }
 
         // GET: api/Publishers/5
@@ -36,14 +69,37 @@ namespace VideoGamesAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var publisher = await _context.Publisher.FindAsync(id);
+            var publisher = await _context.Publisher.Include(pb => pb.VideoGames).FirstAsync(pb => pb.PubId == id);
 
             if (publisher == null)
             {
                 return NotFound();
             }
 
-            return Ok(publisher);
+            PublisherDTO dto = new PublisherDTO()
+            {
+                PubID = publisher.PubId,
+                Name = publisher.Name,
+                VideoGames = new List<VideoGamesDTO>()
+            };
+
+            foreach(VideoGames vg in publisher.VideoGames)
+            {
+                VideoGamesDTO vgdto = new VideoGamesDTO()
+                {
+                    VideoGamesID = vg.Id,
+                    Title = vg.Title,
+                    System = vg.System,
+                    ReleaseDate = vg.ReleaseDate,
+                    ESRB = vg.Esrb,
+                    Publisher = vg.Publisher,
+                    Developer = vg.Developer
+                };
+
+                dto.VideoGames.Add(vgdto);
+            }
+
+            return Ok(dto);
         }
 
         // PUT: api/Publishers/5
