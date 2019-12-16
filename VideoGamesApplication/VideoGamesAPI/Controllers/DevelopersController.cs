@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VideoGamesAPI.Models;
+using VideoGamesAPI.Models.DTOs;
 
 namespace VideoGamesAPI.Controllers
 {
@@ -22,9 +23,41 @@ namespace VideoGamesAPI.Controllers
 
         // GET: api/Developers
         [HttpGet]
-        public IEnumerable<Developer> GetDeveloper()
+        public IEnumerable<DeveloperDTO> GetDeveloper()
         {
-            return _context.Developer;
+            List<Developer> developers = _context.Developer.Include(dv => dv.VideoGames).ToList();
+
+            List<DeveloperDTO> developerDTOList = new List<DeveloperDTO>();
+
+            foreach (Developer dv in developers)
+            {
+                List<VideoGamesDTO> videogamesDTOList = new List<VideoGamesDTO>();
+                foreach (VideoGames vg in dv.VideoGames)
+                {
+                    VideoGamesDTO vgDTO = new VideoGamesDTO()
+                    {
+                        VideoGamesID = vg.Id,
+                        Title = vg.Title,
+                        System = vg.System,
+                        ReleaseDate = vg.ReleaseDate,
+                        ESRB = vg.Esrb,
+                        Publisher = vg.Publisher,
+                        Developer = vg.Developer
+                    };
+
+                    videogamesDTOList.Add(vgDTO);
+                }
+
+                DeveloperDTO dvdto = new DeveloperDTO()
+                {
+                    DevID = dv.DevId,
+                    Name = dv.Name
+                };
+
+                developerDTOList.Add(dvdto);
+            }
+
+            return developerDTOList;
         }
 
         // GET: api/Developers/5
@@ -36,14 +69,37 @@ namespace VideoGamesAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var developer = await _context.Developer.FindAsync(id);
+            var developer = await _context.Developer.Include(dv => dv.VideoGames).FirstAsync(dv => dv.DevId == id);
 
             if (developer == null)
             {
                 return NotFound();
             }
+            DeveloperDTO dto = new DeveloperDTO()
+            {
+                DevID = developer.DevId,
+                Name = developer.Name,
+                VideoGames = new List<VideoGamesDTO>()
+            };
 
-            return Ok(developer);
+            foreach (VideoGames vg in developer.VideoGames)
+            {
+                VideoGamesDTO vgdto = new VideoGamesDTO()
+                {
+                    VideoGamesID = vg.Id,
+                    Title = vg.Title,
+                    System = vg.System,
+                    ReleaseDate = vg.ReleaseDate,
+                    ESRB = vg.Esrb,
+                    Publisher = vg.Publisher,
+                    Developer = vg.Developer
+                };
+
+                dto.VideoGames.Add(vgdto);
+            }
+
+            return Ok(dto);
+
         }
 
         // PUT: api/Developers/5

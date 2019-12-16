@@ -10,5 +10,6 @@ namespace VideoGamesAPI.Models.DTOs
         public int ESRBID { get; set; }
 
         public string Rating { get; set; }
+        public List<VideoGamesDTO> VideoGames { get; set; }
     }
 }

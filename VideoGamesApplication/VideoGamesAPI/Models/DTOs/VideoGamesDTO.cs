@@ -20,7 +20,10 @@ namespace VideoGamesAPI.Models.DTOs
 
         public int Developer { get; set; }
 
-
+        public Developer DeveloperNavigation { get; set; }
+        public Esrb EsrbNavigation { get; set; }
+        public Publisher PublisherNavigation { get; set; }
+        public System SystemNavigation { get; set; }
     }
 }
 

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VideoGamesAPI.Models;
+using VideoGamesAPI.Models.DTOs;
 
 namespace VideoGamesAPI.Controllers
 {
@@ -22,9 +23,41 @@ namespace VideoGamesAPI.Controllers
 
         // GET: api/Esrbs
         [HttpGet]
-        public IEnumerable<Esrb> GetEsrb()
+        public IEnumerable<ESRBDTO> GetEsrb()
         {
-            return _context.Esrb;
+            List<Esrb> esrb = _context.Esrb.Include(es => es.VideoGames).ToList();
+
+            List<ESRBDTO> esrbDTOList = new List<ESRBDTO>();
+
+            foreach (Esrb es in esrb)
+            {
+                List<VideoGamesDTO> videogamesDTOList = new List<VideoGamesDTO>();
+                foreach (VideoGames vg in es.VideoGames)
+                {
+                    VideoGamesDTO vgDTO = new VideoGamesDTO()
+                    {
+                        VideoGamesID = vg.Id,
+                        Title = vg.Title,
+                        System = vg.System,
+                        ReleaseDate = vg.ReleaseDate,
+                        ESRB = vg.Esrb,
+                        Publisher = vg.Publisher,
+                        Developer = vg.Developer
+                    };
+
+                    videogamesDTOList.Add(vgDTO);
+                }
+
+                ESRBDTO esdto = new ESRBDTO()
+                {
+                    ESRBID = es.Esrbid,
+                    Rating = es.Rating
+                };
+
+                esrbDTOList.Add(esdto);
+            }
+
+            return esrbDTOList;
         }
 
         // GET: api/Esrbs/5
@@ -36,14 +69,37 @@ namespace VideoGamesAPI.Controllers
                 return BadRequest(ModelState);
             }
 
-            var esrb = await _context.Esrb.FindAsync(id);
+            var esrb = await _context.Esrb.Include(es => es.VideoGames).FirstAsync(es => es.Esrbid == id);
 
             if (esrb == null)
             {
                 return NotFound();
             }
 
-            return Ok(esrb);
+            ESRBDTO esdto = new ESRBDTO()
+            {
+                ESRBID = esrb.Esrbid,
+                Rating = esrb.Rating,
+                VideoGames = new List<VideoGamesDTO>()
+            };
+
+            foreach (VideoGames vg in esrb.VideoGames)
+            {
+                VideoGamesDTO vgdto = new VideoGamesDTO()
+                {
+                    VideoGamesID = vg.Id,
+                    Title = vg.Title,
+                    System = vg.System,
+                    ReleaseDate = vg.ReleaseDate,
+                    ESRB = vg.Esrb,
+                    Publisher = vg.Publisher,
+                    Developer = vg.Developer
+                };
+
+                esdto.VideoGames.Add(vgdto);
+            }
+
+            return Ok(esdto);
         }
 
         // PUT: api/Esrbs/5

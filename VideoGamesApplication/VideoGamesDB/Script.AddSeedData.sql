@@ -22,7 +22,7 @@ BEGIN
 END
 
 --Populate Genres--
-IF NOT EXISTS (SELECT 1 From Genre)
+/*IF NOT EXISTS (SELECT 1 From Genre)
 BEGIN
 	INSERT INTO Genre ([Name]) VALUES ('MMO');
 	INSERT INTO Genre ([Name]) VALUES ('Simulation');
@@ -44,7 +44,7 @@ BEGIN
 	INSERT INTO Genre ([Name]) VALUES ('Racing');
 	INSERT INTO Genre ([Name]) VALUES ('Beat-em-ups');
 END
-
+*/
 --Populate System--
 IF NOT EXISTS (SELECT 1 From System)
 BEGIN
@@ -95,8 +95,8 @@ END
 IF NOT EXISTS (SELECT 1 FROM VideoGames)
 BEGIN
 	INSERT INTO VideoGames (Title, [System], ReleaseDate, ESRB, Publisher, Developer) VALUES('Devil May Cry',8,'08/23/2001',5,3,3);
-	INSERT INTO VideoGames (Title, [System], ReleaseDate, ESRB, Publisher, Developer) VALUES('GTA: San Andreas',8,'10/26/2004',5,5,7);
-	INSERT INTO VideoGames (Title, [System], ReleaseDate, ESRB, Publisher, Developer) VALUES('Persona 5',8,'09/15/2016',5,2,4);
+	INSERT INTO VideoGames (Title, [System], ReleaseDate, ESRB, Publisher, Developer) VALUES('GTA: San Andreas',8,'10/26/2004',5,7,7);
+	INSERT INTO VideoGames (Title, [System], ReleaseDate, ESRB, Publisher, Developer) VALUES('Persona 5',10,'09/15/2016',5,2,4);
 	INSERT INTO VideoGames (Title, [System], ReleaseDate, ESRB, Publisher, Developer) VALUES('Pokemon Moon',5,'11/18/2016',2,7,8);
 	INSERT INTO VideoGames (Title, [System], ReleaseDate, ESRB, Publisher, Developer) VALUES('Mario KArt 8 Deluxe',5,'04/27/2017',2,8,8);
 END

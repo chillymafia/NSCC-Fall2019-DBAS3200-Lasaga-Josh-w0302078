@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace VideoGamesAPI.Models.DTOs
 {
-    public class DeveleoperDTO
+    public class DeveloperDTO
     {
         public int DevID { get; set; }
 
         public string Name { get; set; }
-
+        public List<VideoGamesDTO> VideoGames { get; set; }
     }
 }
